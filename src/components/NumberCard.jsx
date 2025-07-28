@@ -22,6 +22,11 @@ function NumberCard({name}) {
     }
   }
 
+  const handleReset = () => {
+    setCount(0);
+    setLastAudio([]);
+  };
+
   return (
     <>
       <div className='queue text-center mb-5'>
@@ -29,7 +34,7 @@ function NumberCard({name}) {
         <div className='text-[230px] font-black'>{count}</div>
       </div>
       <div className='flex flex-col'>
-        <button className='button bg-[#e65050] border-[#e65050]' onClick={() => setCount(0)}>Reset</button>
+        <button className='button bg-[#e65050] border-[#e65050]' onClick={handleReset}>Reset</button>
         <button className='button bg-[#64c8b4] border-[#64c8b4]' onClick={handleNext}>Lanjut</button>
         <button className='button bg-[#b4b4b4] border-[#b4b4b4]' onClick={handleRepeat}>Ulangi</button>
       </div>
