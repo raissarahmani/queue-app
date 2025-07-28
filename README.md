@@ -7,7 +7,7 @@ A simple, customizable queue display app for healthcare practices. Built with **
 - Display current queue number per clinic
 - Manual queue control (Next, Reset, Repeat)
 - Play custom audio when number is updated
-- Option to preload and chain audio files
+- Saved updated queue number in local storage
 - Lightweight and fast thanks to Vite and Tailwind
 
 ---
@@ -23,14 +23,14 @@ A simple, customizable queue display app for healthcare practices. Built with **
 ---
 
 ## Getting Started
-# 1. Clone the repo
+### 1. Clone the repo
 git clone https://github.com/raissarahmani/queue-app
 cd queue-app
 
-# 2. Install dependencies
+### 2. Install dependencies
 npm install
 
-# 3. Run the dev server
+### 3. Run the dev server
 npm run dev
 
 
