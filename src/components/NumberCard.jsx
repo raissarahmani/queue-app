@@ -1,9 +1,10 @@
 import React from 'react'
 import { useState } from 'react'
 import useAudioSequence from '../hook/useAudioSequence'
+import useLocalStorage from '../hook/useLocalStorage'
 
 function NumberCard({name}) {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useLocalStorage(`count-${name.toLowerCase()}`, 0);
   const [lastAudio, setLastAudio] = useState([]);
   const { getAudioSequence, playAudioSequence } = useAudioSequence();
 
@@ -25,6 +26,7 @@ function NumberCard({name}) {
   const handleReset = () => {
     setCount(0);
     setLastAudio([]);
+    localStorage.removeItem(`count-${name.toLowerCase()}`);
   };
 
   return (
