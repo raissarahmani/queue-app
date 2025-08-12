@@ -1,9 +1,10 @@
+import { useRef } from "react";
+
 const useAudioSequence = () => {
+  const prevAudio = useRef(null)
+
   const getAudioSequence = (name, number) => {
     const parts = [];
-
-    parts.push('pasien');
-
     if (name.toLowerCase() === 'umum') {
       parts.push('umum');
     } else if (name.toLowerCase() === 'gigi') {
@@ -32,14 +33,30 @@ const useAudioSequence = () => {
   };
 
   const playAudioSequence = async (srcList) => {
-    for (const src of srcList) {
+    if (prevAudio.current) {
+      prevAudio.current.pause();
+      prevAudio.current.currentTime = 0;
+    }
+
+    for (let i = 0; i < srcList.length; i++) {
       await new Promise((resolve) => {
-        const audio = new Audio(src);
-        audio.onended = resolve;
+        const audio = new Audio(srcList[i]);
+        prevAudio.current = audio;
+
+        audio.onended = () => {
+          if (i < srcList.length - 1 && srcList[i].includes('antrian')) {
+            setTimeout(resolve, 200)
+          } else {
+            resolve();
+          }
+        };
+
         audio.onerror = resolve;
         audio.play();
       });
     }
+    
+    prevAudio.current = null;
   };
 
   return { getAudioSequence, playAudioSequence };
