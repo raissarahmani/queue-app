@@ -5,6 +5,8 @@ const useAudioSequence = () => {
 
   const getAudioSequence = (name, number) => {
     const parts = [];
+    parts.push('bell')
+    
     if (name.toLowerCase() === 'umum') {
       parts.push('umum');
     } else if (name.toLowerCase() === 'gigi') {
