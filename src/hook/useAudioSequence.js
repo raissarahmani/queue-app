@@ -6,7 +6,7 @@ const useAudioSequence = () => {
   const getAudioSequence = (name, number) => {
     const parts = [];
     parts.push('bell')
-    
+
     if (name.toLowerCase() === 'umum') {
       parts.push('umum');
     } else if (name.toLowerCase() === 'gigi') {
@@ -35,6 +35,8 @@ const useAudioSequence = () => {
   };
 
   const playAudioSequence = async (srcList) => {
+    console.log("Sequence:", srcList);
+
     if (prevAudio.current) {
       prevAudio.current.pause();
       prevAudio.current.currentTime = 0;
@@ -56,6 +58,7 @@ const useAudioSequence = () => {
         audio.onerror = resolve;
         audio.play();
       });
+      console.log("Playing:", srcList[i]);
     }
     
     prevAudio.current = null;
